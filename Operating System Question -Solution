@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<conio.h>
+
+
+int j,i,k,n,arrival[10],burst[10],wait[10],turnaroundtime[10];
+void totaltime()
+{
+	int totalltime=0,value;
+	
+	for(i=0;i<n;i++)
+	{
+		totalltime+=burst[i];	
+	}
+	value=2*(n-1);
+	totalltime+=value;
+	printf("\nThe total time taken to process the given process's is:%d",totalltime);
+	
+}
+int main()
+ {
+ 	
+ 	int tem=0;
+ 	int m;
+ 	printf("\nEnter the number of requirements:\t");
+ 	scanf("%d",&n);
+ 	for(i=0;i<n;i++)
+ 	{
+ 		printf("Enter the arival time of process p%d: \t",i+1);
+		scanf("%d",&m);
+		if(m==0)
+		{
+		printf("error\n");
+		printf("Re-enter the arrival time value:\t");
+		scanf("%d",&arrival[i]);
+		}
+		else
+			arrival[i]=m;
+		printf("Enter the burst time of the proecss:\t");
+		scanf("%d",&burst[i]);
+		
+	}
