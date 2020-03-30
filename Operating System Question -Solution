@@ -39,3 +39,71 @@ int main()
 		scanf("%d",&burst[i]);
 		
 	}
+	int b,temp=0;
+	wait[0]=0;
+	for(i=0;i<n;i++)
+	{
+		for(b=i+1;b<n;b++)
+		{
+		
+		if(burst[i]>burst[b])
+		{
+			temp=arrival[i];
+			arrival[i]=arrival[b];
+			arrival[b]=temp;
+			
+			temp=burst[i];
+			burst[i]=burst[b];
+			burst[b]=temp;
+			
+		}
+		}
+	}
+	
+	printf("Waiting time of process p1 is:2 as mentioned in question");
+	for(i=1;i<n;i++)
+	{
+		
+		for(j=0;j<i;j++)
+		{
+			tem+=burst[j];
+			
+		}
+		tem+=arrival[0];
+		//printf("\nWaiting time of process p%d:%d\n",i+1,tem-arrival[i]+2);
+		wait[i]=tem-arrival[i]+2;
+		tem=0;
+		
+	}
+	int avgwait=0;
+	for(i=0;i<n;i++)
+	{
+		avgwait+=wait[i];
+	}
+
+	
+	
+	for(i=0;i<n;i++)
+	{
+	   // printf("\nTurnAroundTime of the process p%d is:%d\n",i+1,wait[i]+burst[i]);
+		turnaroundtime[i]=wait[i]+burst[i];
+	}
+	
+	int	avgtat=0;
+	for(i=0;i<n;i++)
+	{
+		avgtat+=turnaroundtime[i];
+	}
+	
+		printf("\nTabular representation of above info\n");
+	
+	printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");	
+	 for(i=0;i<n;i++)
+    {
+        printf("\np%d\t\t  %d\t\t    %d\t\t\t%d\n",arrival[i],burst[i],wait[i],turnaroundtime[i]);
+    }
+            printf("\nAverage waiting time is:%d\n",avgwait/n);
+	printf("\nAverage TAT is:%d\n",avgtat/n);
+	totaltime();
+}
+
